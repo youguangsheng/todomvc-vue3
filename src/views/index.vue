@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import TodoComp from "./todos/index.vue";
+import TodoComp from "./components/Todo.vue";
 export default defineComponent({
   name: "Home",
   components: { TodoComp }
