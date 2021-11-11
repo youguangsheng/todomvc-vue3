@@ -2,7 +2,7 @@
 import { defineComponent, reactive } from "vue";
 import TodoHeader from "./TodoHeader.vue";
 import TodoItem from "./TodoItem.vue";
-
+import TodoFooter from "./TodoFooter.vue";
 interface TODO {
   id: number;
   todoName: string;
@@ -10,7 +10,7 @@ interface TODO {
 }
 export default defineComponent({
   name: "Todos",
-  components: { TodoHeader, TodoItem },
+  components: { TodoHeader, TodoItem, TodoFooter },
   setup() {
     type TODOS = Array<TODO>;
     let todos = reactive<TODOS>([]);
@@ -42,6 +42,7 @@ export default defineComponent({
             );
           })}
         </section>
+        <todo-footer></todo-footer>
       </div>
     );
   }
