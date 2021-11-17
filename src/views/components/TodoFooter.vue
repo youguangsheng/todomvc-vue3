@@ -1,14 +1,24 @@
 <script lang="tsx">
-import { defineComponent, ref, reactive } from "vue";
+import { TODO } from "./type";
+import { defineComponent, ref, reactive, PropType, computed } from "vue";
 export default defineComponent({
   name: "TodoFooter",
+  props: { todos: { type: Array as PropType<TODO[]>, default: () => [] } },
+  emits: {
+    clear: null,
+    change: (tab: string) => !!tab
+  },
   setup(props, { emit }) {
+    const todos = ref(props.todos);
+    const completeTodoLength = computed(() => {
+      return todos.value.filter((todo: TODO) => todo.isComplete).length;
+    });
+
     let active = ref<string>("All");
-
-    const tabs = reactive<Array<string>>(["All", "Active", "complete"]);
-
+    const tabs = reactive<string[]>(["All", "Active", "complete"]);
     function handleTabChange(tab: string): void {
       active.value = tab;
+      emit("change", tab);
     }
 
     function clearCompleted() {
@@ -17,7 +27,9 @@ export default defineComponent({
 
     return () => (
       <div class="todo-footer">
-        <div class="todo-footer__item"> 0 item left</div>
+        <div class="todo-footer__item">
+          {completeTodoLength.value} item left
+        </div>
         <div class="todo-footer__tabs">
           {tabs.map(tab => (
             <div

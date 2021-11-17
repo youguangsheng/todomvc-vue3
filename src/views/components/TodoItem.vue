@@ -1,9 +1,19 @@
 <script lang="tsx">
-import { defineComponent, reactive } from "vue";
+import { TODO } from "./type";
+import { defineComponent, reactive, PropType } from "vue";
 export default defineComponent({
   name: "TodoItem",
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  props: { todo: { type: Object, default: () => {} } },
+  props: { todo: { type: Object as PropType<TODO>, default: () => {} } },
+  emits: {
+    TodoItemChange: (id: number, isComplete: boolean): boolean => {
+      if (id > 0 && isComplete !== undefined) {
+        return true;
+      } else {
+        console.warn("Invalid submit event payload!");
+        return false;
+      }
+    }
+  },
   setup(props, { emit }) {
     const todo = reactive(props.todo);
     function onChange() {
