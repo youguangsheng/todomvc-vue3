@@ -5,7 +5,7 @@ export default defineComponent({
   name: "TodoFooter",
   props: { todos: { type: Array as PropType<TODO[]>, default: () => [] } },
   emits: {
-    clear: null,
+    clearCompleted: null,
     change: (tab: string) => !!tab
   },
   setup(props, { emit }) {
@@ -22,7 +22,7 @@ export default defineComponent({
     }
 
     function clearCompleted() {
-      emit("clear");
+      emit("clearCompleted");
     }
 
     return () => (
