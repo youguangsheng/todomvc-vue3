@@ -6,6 +6,7 @@ export default defineComponent({
     const todoInput = ref<string>("");
     function emitTodoInput(e: KeyboardEvent): void {
       if (e.key === "Enter") {
+        if (!todoInput.value.trim()) return;
         emit("todo-change", todoInput.value);
         todoInput.value = "";
       }

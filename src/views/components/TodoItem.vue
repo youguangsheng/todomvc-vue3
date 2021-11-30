@@ -59,5 +59,6 @@ input[type="checkbox"] {
 
 .todo-del {
   text-decoration: line-through;
+  font-style: italic;
 }
 </style>

@@ -1,6 +1,13 @@
 <script lang="tsx">
 import { TODO } from "./type";
-import { defineComponent, ref, reactive, PropType, computed } from "vue";
+import {
+  defineComponent,
+  ref,
+  reactive,
+  PropType,
+  computed,
+  onMounted
+} from "vue";
 export default defineComponent({
   name: "TodoFooter",
   props: { todos: { type: Array as PropType<TODO[]>, default: () => [] } },
@@ -14,12 +21,24 @@ export default defineComponent({
       return todos.value.filter((todo: TODO) => todo.isComplete).length;
     });
 
-    let active = ref<string>("All");
-    const tabs = reactive<string[]>(["All", "Active", "complete"]);
+    let active = ref<string>("all");
+    const tabs = reactive<string[]>(["all", "active", "complete"]);
     function handleTabChange(tab: string): void {
       active.value = tab;
       emit("change", tab);
     }
+    onMounted(() => {
+      window.addEventListener("hashchange", () => {
+        const hashUrl = window.location.hash;
+        const url = hashUrl.slice(2);
+        if (url === active.value) return;
+        if (hashUrl === "#/") {
+          active.value = "all";
+          return;
+        }
+        handleTabChange(url);
+      });
+    });
 
     function clearCompleted() {
       emit("clearCompleted");

@@ -24,13 +24,14 @@ export default defineComponent({
       todos[index].isComplete = val;
     }
 
-    const curTab = ref<string>("All");
-    const handlerChange = (tab: string) => {
+    const curTab = ref<string>("all");
+    const handleChange = (tab: string) => {
       curTab.value = tab;
+      location.hash = `/${tab}`;
     };
 
     const computedTodos = computed(() => {
-      if (curTab.value === "Active")
+      if (curTab.value === "active")
         return todos.filter(todo => !todo.isComplete);
       if (curTab.value === "complete")
         return todos.filter(todo => todo.isComplete);
@@ -63,7 +64,7 @@ export default defineComponent({
         </section>
         <todo-footer
           todos={todos}
-          onChange={handlerChange}
+          onChange={handleChange}
           onClearCompleted={clearCompleted}
         ></todo-footer>
       </div>
