@@ -39,3 +39,11 @@ npm run genlog 生成git提交日志
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### git tag
+
+```
+git add .
+git commit -m 'fixed some bugs'
+git tag -a 1.1 -m 'release version 1.1'
+```
