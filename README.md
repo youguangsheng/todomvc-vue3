@@ -47,3 +47,13 @@ git add .
 git commit -m 'fixed some bugs'
 git tag -a 1.1 -m 'release version 1.1'
 ```
+
+### git 分支添加备注
+
+```
+// 添加备注
+git config branch.<branchName>.description <remark>
+
+// 查看备注
+git config branch.<branchName>.description
+```
