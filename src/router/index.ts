@@ -1,10 +1,10 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: '',
-    component: () => import('@/views/index.vue')
+    redirect: 'all'
   },
   {
     path: '/all',
@@ -20,12 +20,17 @@ const routes: Array<RouteRecordRaw> = [
     path: '/complete',
     name: '',
     component: () => import('@/views/index.vue')
+  },
+  {
+    path: '/counter',
+    name: '',
+    component: () => import('@/views/counter.vue')
   }
-]
+];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes
-})
+});
 
-export default router
+export default router;
