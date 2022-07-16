@@ -9,5 +9,16 @@ module.exports = {
     open: true, // 配置自动启动浏览器
     port: 9527
   },
-  lintOnSave: process.env.NODE_ENV !== "production"
+  lintOnSave: process.env.NODE_ENV !== "production",
+  configureWebpack: {
+    module: {
+      rules: [
+        {
+          test: /\.mjs$/,
+          include: /node_modules/,
+          type: "javascript/auto"
+        }
+      ]
+    }
+  }
 };
