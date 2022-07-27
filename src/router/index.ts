@@ -30,6 +30,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/imgDetail',
     name: '',
     component: () => import('@/views/imgDetail.vue')
+  },
+  {
+    path: '/textContrast',
+    name: '',
+    component: () => import('@/views/textContrast.vue')
   }
 ];
 
