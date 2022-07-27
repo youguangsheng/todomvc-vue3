@@ -1,0 +1,294 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  box-sizing: border-box;
+}
+
+#app {
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+.rela {
+  position: relative;
+}
+
+/*竖向居中*/
+.table-cell {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.middle {
+  vertical-align: middle;
+}
+
+.ellipsis {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ellipsis-more {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/*弹性盒*/
+.flex {
+  display: inline-flex;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.flex-d {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.aic {
+  align-items: center;
+}
+
+.display-ib {
+  display: inline-block;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-right {
+  justify-content: flex-end;
+}
+
+.flex-left {
+  justify-content: flex-start;
+}
+
+.flex1 {
+  flex: 1;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+  word-break: break-all;
+}
+
+.justify-sb {
+  justify-content: space-between;
+}
+
+.border-none {
+  border: none !important;
+}
+
+li {
+  list-style: none;
+}
+
+/*弹性盒-子元素可竖向居中*/
+.flex-middle {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: center;
+}
+
+.tl {
+  text-align: left;
+}
+
+.tc {
+  text-align: center;
+}
+
+.tr {
+  text-align: right;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.h100 {
+  height: 100%;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.clear::after {
+  /*原理： overflow!=visible ;display!=block;float!=none;position!=static||relative 都可为元素创建BFC；消除边距重叠或者浮动产生的影响*/
+  content: '';
+  overflow: hidden;
+  clear: both;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.display-ib {
+  display: inline-block;
+}
+
+.fw-b {
+  font-weight: bold;
+}
+
+.fw-n {
+  font-weight: normal;
+}
+
+.user-select-none {
+  user-select: none;
+}
+
+.testBox {
+  width: 200px;
+  height: 200px;
+  margin: 20px auto;
+  background-color: aquamarine;
+}
+
+.lh-13 {
+  line-height: 1.3;
+}
+
+.ova {
+  overflow: auto !important;
+}
+
+.vah {
+  overflow: hidden;
+}
+
+$size-map: (
+  f20: -20px,
+  f15: -15px,
+  f10: -10px,
+  f5: -5px,
+  0: 0px,
+  2: 2px,
+  3: 3px,
+  4: 4px,
+  5: 5px,
+  8: 8px,
+  10: 10px,
+  12: 12px,
+  14: 14px,
+  15: 15px,
+  16: 16px,
+  20: 20px,
+  24: 24px,
+  25: 25px,
+  30: 30px,
+  36: 36px,
+  40: 40px,
+  50: 50px,
+  60: 60px,
+  90: 90px,
+  100: 100px,
+  124: 124px,
+  150: 150px
+);
+
+@each $name in map-keys($size-map) {
+  $value: map-get($size-map, $name);
+
+  .mt-#{$name} {
+    margin-top: $value !important;
+  }
+
+  .mr-#{$name} {
+    margin-right: $value;
+  }
+
+  .mb-#{$name} {
+    margin-bottom: $value !important;
+  }
+
+  .ml-#{$name} {
+    margin-left: $value;
+  }
+
+  .margin-#{$name} {
+    margin: $value;
+  }
+
+  .margin-h-#{$name} {
+    margin-left: $value;
+    margin-right: $value;
+  }
+
+  .margin-v-#{$name} {
+    margin-top: $value;
+    margin-bottom: $value;
+  }
+
+  .pt-#{$name} {
+    padding-top: $value !important;
+  }
+
+  .pr-#{$name} {
+    padding-right: $value;
+  }
+
+  .pb-#{$name} {
+    padding-bottom: $value !important;
+  }
+
+  .pl-#{$name} {
+    padding-left: $value;
+  }
+
+  .padding-#{$name} {
+    padding: $value;
+  }
+
+  .padding-h-#{$name} {
+    padding-left: $value !important;
+    padding-right: $value !important;
+  }
+
+  .padding-v-#{$name} {
+    padding-top: $value;
+    padding-bottom: $value;
+  }
+}
+
+@for $i from 12 to 36 {
+  .fz-#{$i} {
+    font-size: $i + px !important;
+  }
+}
+
+/*取消微软浏览器的密码小眼睛样式*/
+input[type='password']::-ms-reveal {
+  display: none;
+}
